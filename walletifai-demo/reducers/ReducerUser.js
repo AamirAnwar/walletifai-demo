@@ -1,4 +1,5 @@
 import {LOGIN_USER} from '../actions';
+
 export default function(state=null, action) {
   switch (action.type) {
     case LOGIN_USER:
@@ -7,10 +8,8 @@ export default function(state=null, action) {
       console.log("Reducer updated with " + data.user.username);
       return {
         username:data.user.username,
-        access_token:data.access_token
       }
-    }
-    else {
+    } else {
       return state;
     }
     break;

@@ -1,60 +1,109 @@
 import React from 'react';
-
 import {
   StyleSheet,
   Text,
   View,
-  Button
+  Image,
+  Alert
 } from 'react-native';
-
 import Input from './Input';
 import {connect} from 'react-redux';
 import {loginUser} from '../actions';
+import WButton from './WButton';
 import axios from 'axios';
 
-class App extends React.Component {
+class LoginForm extends React.Component {
   state = {username:'aamir@walletifai.com',password:'aamiranwar123'}
   render() {
-    
-
     return (
       <View style={styles.container}>
-        <Text style={{textAlign:'center', fontSize:19}}>Walletifai</Text>
-        <Input label="Email" value={this.state.username} onChangeText={text => {this.setState({'username':text})}} />
-        <Input label="Password" value={this.state.password} onChangeText={text => {this.setState({'password':text})}} />
-        <Button title="Login" onPress= {this.onLoginButtonClick.bind(this)}  accessiibilityLabel="Learn more about this purple button"/>
+        <View style={styles.imageContainer}>
+          <Image style={styles.bannerImage} source={require('../resources/login_image.png')} />
+        </View>
+        <Text style={styles.title}>Log in</Text>
+        <Input label="Email" isSecure={false} value={this.state.username} onChangeText={text => {this.setState({'username':text})}} />
+        <Input label="Password" isSecure={true} value={this.state.password} onChangeText={text => {this.setState({'password':text})}} />
+        <WButton customStyle={styles.button} onPress= {this.onLoginButtonClick.bind(this)} />
+
       </View>
     );
   }
+
   onLoginButtonClick() {
+    const {username, password} = this.state;
+    if (validateInput(username, password) == false) {
+      showAlert('Invalid credentials', 'One or more of the input fields has an invalid value')
+      return;
+    }
     this.props.loginUser(this.state.username, this.state.password);
   }
 
 }
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    alignItems: 'center'  
+  },
+
+  bannerImage: {
+    marginTop:30,
+    width: 250,
+    height: 250,
+  },
+
+  title: {
+    textAlign:'center', 
+    fontSize:20,
+    fontWeight:'bold',
+    marginTop: 20,
+  },
+
+  button: {
+    marginTop: 10
+  },
+
   container: {
     marginTop:50,
+    marginLeft: 20,
+    marginRight: 20,
     backgroundColor: '#fff',
-    // flex:1,
-    height: 400,
-    justifyContent: 'space-around'
-
-  },
-  textFieldContainer: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    borderColor: '#ddd',
-    position: 'relative'
+    alignContent: 'center',
   }
 });
 
+
 function mapStateToProps(state) {
-  // console.log("Recieved user in the login form" + JSON.stringify(state,null,2));
+  console.log("Recieved user in the login form" + JSON.stringify(state,null,2));
+  if (state.user) {
+    showAlert("Success", "Logged in successfully with username " + state.user.username);
+    // Navigate to the main landing page 
+  } 
   return {user:state.user};
 }
 
-export default connect(mapStateToProps, {loginUser})(App)
+ const showAlert = (title, subtitle) => Alert.alert(
+    title,
+    subtitle,
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
+
+// Validate username and password provided
+function validateInput(username, password) {
+  if (!username || username === '') {
+    return false;
+  } 
+  if (!password || password === '') {
+    return false;
+  } 
+
+  return true;
+}
+
+export default connect(mapStateToProps, {loginUser})(LoginForm)
