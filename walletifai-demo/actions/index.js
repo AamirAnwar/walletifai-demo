@@ -1,7 +1,7 @@
 export const LOGIN_USER = 'login_user';
 
 import axios from 'axios';
-const ROOT_URL = 'http://localhost:5000/api/v1';
+const ROOT_URL = 'http://localhost:5000';
 
 export function loginUser(username, password) {
   const data = {
@@ -9,7 +9,7 @@ export function loginUser(username, password) {
     password: password
   };
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/user/login`, data).then(res => {
+    axios.post(`${ROOT_URL}/login`, data).then(res => {
       dispatch({type:LOGIN_USER, payload:res});
     }).catch((err) => {
       console.log("Action failed!");
