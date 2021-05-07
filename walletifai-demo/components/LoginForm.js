@@ -13,13 +13,13 @@ import {loginUser} from '../actions';
 import axios from 'axios';
 
 class App extends React.Component {
-  state = {username:'z@z.z',password:'z'}
+  state = {username:'aamir@walletifai.com',password:'aamiranwar123'}
   render() {
     
 
     return (
       <View style={styles.container}>
-        <Text style={{textAlign:'center', fontSize:19}}>Bot Social</Text>
+        <Text style={{textAlign:'center', fontSize:19}}>Walletifai</Text>
         <Input label="Email" value={this.state.username} onChangeText={text => {this.setState({'username':text})}} />
         <Input label="Password" value={this.state.password} onChangeText={text => {this.setState({'password':text})}} />
         <Button title="Login" onPress= {this.onLoginButtonClick.bind(this)}  accessiibilityLabel="Learn more about this purple button"/>
