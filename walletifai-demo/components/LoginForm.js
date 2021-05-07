@@ -10,6 +10,7 @@ import {
 import Input from './Input';
 import {connect} from 'react-redux';
 import {loginUser} from '../actions';
+import WButton from './WButton';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -19,10 +20,11 @@ class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={{textAlign:'center', fontSize:19}}>Walletifai</Text>
-        <Input label="Email" value={this.state.username} onChangeText={text => {this.setState({'username':text})}} />
-        <Input label="Password" value={this.state.password} onChangeText={text => {this.setState({'password':text})}} />
-        <Button title="Login" onPress= {this.onLoginButtonClick.bind(this)}  accessiibilityLabel="Learn more about this purple button"/>
+        <Text style={styles.title}>Log in</Text>
+        <Input label="Email" isSecure={false} value={this.state.username} onChangeText={text => {this.setState({'username':text})}} />
+        <Input label="Password" isSecure={true} value={this.state.password} onChangeText={text => {this.setState({'password':text})}} />
+        <WButton onPress= {this.onLoginButtonClick.bind(this)} />
+
       </View>
     );
   }
@@ -33,22 +35,21 @@ class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop:50,
-    backgroundColor: '#fff',
-    // flex:1,
-    height: 400,
-    justifyContent: 'space-around'
+  title: {
+    textAlign:'center', 
+    fontSize:20,
+    fontWeight:'bold'
 
   },
-  textFieldContainer: {
-    borderBottomWidth: 1,
-    padding: 5,
+
+  container: {
+    marginTop:50,
+    marginLeft: 20,
+    marginRight: 20,
     backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    borderColor: '#ddd',
-    position: 'relative'
+    height: 400,
+    justifyContent: 'space-around',
+    alignContent: 'center'
   }
 });
 
