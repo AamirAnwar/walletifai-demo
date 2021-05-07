@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Image
 } from 'react-native';
 
 import Input from './Input';
@@ -20,10 +20,13 @@ class App extends React.Component {
 
     return (
       <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.bannerImage} source={require('../resources/login_image.png')} />
+        </View>
         <Text style={styles.title}>Log in</Text>
         <Input label="Email" isSecure={false} value={this.state.username} onChangeText={text => {this.setState({'username':text})}} />
         <Input label="Password" isSecure={true} value={this.state.password} onChangeText={text => {this.setState({'password':text})}} />
-        <WButton onPress= {this.onLoginButtonClick.bind(this)} />
+        <WButton customStyle={styles.button} onPress= {this.onLoginButtonClick.bind(this)} />
 
       </View>
     );
@@ -35,11 +38,25 @@ class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    alignItems: 'center'  
+  },
+
+  bannerImage: {
+    marginTop:30,
+    width: 250,
+    height: 250,
+  },
+
   title: {
     textAlign:'center', 
     fontSize:20,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    marginTop: 20,
+  },
 
+  button: {
+    marginTop: 10
   },
 
   container: {
@@ -47,9 +64,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     backgroundColor: '#fff',
-    height: 400,
-    justifyContent: 'space-around',
-    alignContent: 'center'
+    alignContent: 'center',
   }
 });
 

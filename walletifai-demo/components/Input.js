@@ -43,6 +43,8 @@ const styles = {
   containerStyle: {
     // backgroundColor: 'green',
     // height: 64,
+    marginTop: 10,
+    marginBottom: 10,
     flexDirection: 'column',
   }
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 
 export default function WButton(props) {
-  const { onPress, title = 'Login' } = props;
+  const {customStyle, onPress, title = 'Login' } = props;
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <Pressable style={[styles.button, customStyle]} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </Pressable>
   );
