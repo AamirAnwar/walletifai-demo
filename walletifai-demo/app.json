@@ -1,0 +1,12 @@
+{
+  "name": "walletifai-demo",
+  "displayName": "walletifai-demo",
+  "expo": {
+    "name": "walletifai-demo",
+    "slug": "walletifai-demo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
