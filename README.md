@@ -5,7 +5,7 @@ A demo login page using react native
 # Getting started
 
 ### Express Server
-You can find the basic NodeJS server in the /server directory. You can run `node index.js` to boot up a local express server to serve a basic response for the login endpoint.
+You can find the basic NodeJS server in the `/server` directory. You can run `node index.js` to boot up a local express server to serve a basic response for the login endpoint.
 
 
 ### Running the react native app
