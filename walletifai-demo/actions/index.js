@@ -12,7 +12,7 @@ export function loginUser(username, password) {
     axios.post(`${ROOT_URL}/login`, data).then(res => {
       dispatch({type:LOGIN_USER, payload:res});
     }).catch((err) => {
-      console.log("Action failed!");
+      console.log("Login Action failed!");
       console.log(err);
     });
   }

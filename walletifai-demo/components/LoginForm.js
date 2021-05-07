@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   StyleSheet,
   Text,
@@ -7,14 +6,13 @@ import {
   Image,
   Alert
 } from 'react-native';
-
 import Input from './Input';
 import {connect} from 'react-redux';
 import {loginUser} from '../actions';
 import WButton from './WButton';
 import axios from 'axios';
 
-class App extends React.Component {
+class LoginForm extends React.Component {
   state = {username:'aamir@walletifai.com',password:'aamiranwar123'}
   render() {
     return (
@@ -30,6 +28,7 @@ class App extends React.Component {
       </View>
     );
   }
+
   onLoginButtonClick() {
     const {username, password} = this.state;
     if (validateInput(username, password) == false) {
@@ -77,8 +76,8 @@ function mapStateToProps(state) {
   console.log("Recieved user in the login form" + JSON.stringify(state,null,2));
   if (state.user) {
     showAlert("Success", "Logged in successfully with username " + state.user.username);
-  }
-  
+    // Navigate to the main landing page 
+  } 
   return {user:state.user};
 }
 
@@ -95,15 +94,16 @@ function mapStateToProps(state) {
     ]
   );
 
+// Validate username and password provided
 function validateInput(username, password) {
-  if (!username || username == '') {
+  if (!username || username === '') {
     return false;
   } 
-  if (!password || password == '') {
+  if (!password || password === '') {
     return false;
   } 
 
   return true;
 }
 
-export default connect(mapStateToProps, {loginUser})(App)
+export default connect(mapStateToProps, {loginUser})(LoginForm)

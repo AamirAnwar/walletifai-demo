@@ -24,25 +24,18 @@ const styles = {
     paddingLeft: 5,
     fontSize: 18,
     lineHeight : 23,
-    
     borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 8,
     borderBottomWidth: 1,
-    // backgroundColor: 'red',
     height:44,
     marginTop:5,
   },
-
   labelStyle: {
-
     fontSize: 14,
     color: 'gray',
-    // backgroundColor: 'blue'
   },
   containerStyle: {
-    // backgroundColor: 'green',
-    // height: 64,
     marginTop: 10,
     marginBottom: 10,
     flexDirection: 'column',

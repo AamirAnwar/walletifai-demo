@@ -1,4 +1,5 @@
 import {LOGIN_USER} from '../actions';
+
 export default function(state=null, action) {
   switch (action.type) {
     case LOGIN_USER:
@@ -8,8 +9,7 @@ export default function(state=null, action) {
       return {
         username:data.user.username,
       }
-    }
-    else {
+    } else {
       return state;
     }
     break;

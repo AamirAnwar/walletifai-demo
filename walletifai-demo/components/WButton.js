@@ -12,10 +12,8 @@ export default function WButton(props) {
 
 const styles = StyleSheet.create({
   button: {
-    // width: 250,
     alignItems: 'center',
     paddingVertical: 15,
-    // paddingHorizontal: 0,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: 'blue',
