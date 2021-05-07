@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  Alert
 } from 'react-native';
 
 import Input from './Input';
@@ -16,8 +17,6 @@ import axios from 'axios';
 class App extends React.Component {
   state = {username:'aamir@walletifai.com',password:'aamiranwar123'}
   render() {
-    
-
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
@@ -32,6 +31,11 @@ class App extends React.Component {
     );
   }
   onLoginButtonClick() {
+    const {username, password} = this.state;
+    if (validateInput(username, password) == false) {
+      showAlert('Invalid credentials', 'One or more of the input fields has an invalid value')
+      return;
+    }
     this.props.loginUser(this.state.username, this.state.password);
   }
 
@@ -68,9 +72,38 @@ const styles = StyleSheet.create({
   }
 });
 
+
 function mapStateToProps(state) {
-  // console.log("Recieved user in the login form" + JSON.stringify(state,null,2));
+  console.log("Recieved user in the login form" + JSON.stringify(state,null,2));
+  if (state.user) {
+    showAlert("Success", "Logged in successfully with username " + state.user.username);
+  }
+  
   return {user:state.user};
+}
+
+ const showAlert = (title, subtitle) => Alert.alert(
+    title,
+    subtitle,
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
+
+function validateInput(username, password) {
+  if (!username || username == '') {
+    return false;
+  } 
+  if (!password || password == '') {
+    return false;
+  } 
+
+  return true;
 }
 
 export default connect(mapStateToProps, {loginUser})(App)

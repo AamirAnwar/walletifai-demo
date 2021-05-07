@@ -7,7 +7,6 @@ export default function(state=null, action) {
       console.log("Reducer updated with " + data.user.username);
       return {
         username:data.user.username,
-        access_token:data.access_token
       }
     }
     else {
